@@ -37,8 +37,8 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal") * speed;
-        vertical = Input.GetAxisRaw("Vertical") * speed;
+        horizontal = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
+        vertical = Input.GetAxisRaw("Vertical") * speed * Time.deltaTime;
 
         // Check if the player is touching the ceiling
         touchingCeiling = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), 0.4f, ceilingMask); // +1 checks above the player
