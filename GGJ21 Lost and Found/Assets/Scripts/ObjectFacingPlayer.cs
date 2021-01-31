@@ -12,6 +12,6 @@ public class ObjectFacingPlayer : MonoBehaviour
         var lookPos = player.transform.position - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 1f);
     }
 }

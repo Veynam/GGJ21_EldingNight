@@ -105,7 +105,7 @@ public class EnemyBehaviour : MonoBehaviour
         if(!playerInSight)
 		{
             wayPointDistance = Vector3.Distance(transform.position, waypoints[waypointIndex].position);
-            if (wayPointDistance < 1f)
+            if (wayPointDistance < 3f)
             {
                 waypointIndex++;
                 if (waypointIndex >= waypoints.Length)

@@ -3,6 +3,10 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     #region Variables
+
+    [Header("Player Sound Elements")]
+    public AudioClip[] FootSteps;
+
     public Rigidbody target;
     private float horizontal;
     private float vertical;
@@ -18,6 +22,12 @@ public class Movement : MonoBehaviour
     public LayerMask ceilingMask;
     public bool touchingCeiling;
 
+    private Vector3 newMove;
+
+    private AudioSource MovementSound;
+
+    private bool isMoving;
+
     //CapsuleCollider playerCol;
     //float originalHeight;
     //public float reducedHeight;
@@ -32,6 +42,7 @@ public class Movement : MonoBehaviour
     void Awake()
     {
         target = GetComponent<Rigidbody>();
+        MovementSound = GetComponent<AudioSource>();
 
         //playerCol = GetComponent<CapsuleCollider>();
         //originalHeight = playerCol.height;
@@ -55,8 +66,9 @@ public class Movement : MonoBehaviour
                 target.velocity = new Vector3(target.velocity.x, jumpForce, target.velocity.y);
 
             // Moving
+            MovementSounds();
             Vector3 move = (transform.right * horizontal + transform.forward * vertical).normalized * speed;
-            Vector3 newMove = new Vector3(move.x, target.velocity.y, move.z);
+            newMove = new Vector3(move.x, target.velocity.y, move.z);
 
             target.velocity = newMove;
 
@@ -86,6 +98,23 @@ public class Movement : MonoBehaviour
         if (speed >= 5.0f)
         {
             speed -= 4f * Time.deltaTime;
+        }
+    }
+
+    private void MovementSounds()
+    {
+        if (newMove.magnitude > 0.1)
+        {
+            isMoving = true;
+        }
+        else isMoving = false;
+
+        if (isMoving && isGrounded)
+        {
+            if (MovementSound.isPlaying == false)
+            {
+                MovementSound.PlayOneShot(FootSteps[Random.Range(0, FootSteps.Length)]);
+            }
         }
     }
 
