@@ -8,6 +8,8 @@ public class MouseLook : MonoBehaviour
     public float mouseSensitivity = 100f;
     private float xRotation;
 
+    public bool dead;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -15,14 +17,17 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
-        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        if(!dead)
+		{
+            float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        target.Rotate(Vector3.up * mouseX);
+            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            target.Rotate(Vector3.up * mouseX);
+        }
 
         // Unlock the cursor
         if (Input.GetKeyDown(KeyCode.Escape))
