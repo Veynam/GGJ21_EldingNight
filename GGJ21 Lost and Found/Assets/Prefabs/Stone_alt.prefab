@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6580493659609537751}
   - component: {fileID: 6580493659609537748}
   - component: {fileID: 6580493659609537749}
-  - component: {fileID: 6580493659609537746}
   m_Layer: 0
   m_Name: Stone_alt
   m_TagString: Untagged
@@ -150,16 +149,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6580493659609537747}
   m_Mesh: {fileID: 0}
---- !u!65 &6580493659609537746
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6580493659609537747}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4, y: 0, z: 4}
-  m_Center: {x: 2, y: 0, z: 2}

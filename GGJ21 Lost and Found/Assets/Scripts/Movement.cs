@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     private float horizontal;
     private float vertical;
 
-    public float speed = 5f;
+    public float speed = 4f;
     public float jumpForce = 5f;
 
     // Ground check
@@ -28,9 +28,9 @@ public class Movement : MonoBehaviour
 
     private bool isMoving;
 
-    //CapsuleCollider playerCol;
-    //float originalHeight;
-    //public float reducedHeight;
+    CapsuleCollider playerCol;
+    float originalHeight;
+    public float reducedHeight;
 
     // Sprint
     public bool isSprinting;
@@ -44,8 +44,8 @@ public class Movement : MonoBehaviour
         target = GetComponent<Rigidbody>();
         MovementSound = GetComponent<AudioSource>();
 
-        //playerCol = GetComponent<CapsuleCollider>();
-        //originalHeight = playerCol.height;
+        playerCol = GetComponent<CapsuleCollider>();
+        originalHeight = playerCol.height;
     }
 
     void Update()
@@ -82,20 +82,29 @@ public class Movement : MonoBehaviour
                 StopSprint();
                 isSprinting = false;
             }
+
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                Crouch();
+            }
+            else
+            {
+                GetUp();
+            }
         }
     }
 
     // Increase speed
     void Sprint()
     {
-        if (speed <= 8.0f)
+        if (speed <= 7.0f)
         {
             speed += 2f * Time.deltaTime;
         }   
     }
     void StopSprint()
     {
-        if (speed >= 5.0f)
+        if (speed >= 4.0f)
         {
             speed -= 4f * Time.deltaTime;
         }
@@ -119,15 +128,15 @@ public class Movement : MonoBehaviour
     }
 
     // Reduce height
-    //void Crouch()
-    //{
-    //    playerCol.height = reducedHeight;
-    //}
+    void Crouch()
+    {
+        playerCol.height = reducedHeight;
+    }
 
-    //// Reset height
-    //void GetUp()
-    //{
-    //    playerCol.height = originalHeight;
-    //}
+    // Reset height
+    void GetUp()
+    {
+        playerCol.height = originalHeight;
+    }
     #endregion
 }

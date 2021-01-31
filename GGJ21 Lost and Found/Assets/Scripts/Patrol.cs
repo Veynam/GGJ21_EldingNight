@@ -73,7 +73,7 @@ public class Patrol : MonoBehaviour
         {
             counter += Time.deltaTime;
             objectToMove.rotation =
-                Quaternion.Lerp(currentRot, newRot, counter / duration);
+                Quaternion.Slerp(currentRot, newRot, counter / duration);
             yield return null;
         }
     }
