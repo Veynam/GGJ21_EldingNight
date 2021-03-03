@@ -1,7 +1,7 @@
 # GGJ21_GamesJam
 GGJ 2021 Games Jam submission
 
-Liutauras (ucvex)
+##Liutauras (ucvex)
 Scripts:
 -Enemybehaviour
 -ObjectFacingPlayer
@@ -15,7 +15,7 @@ Assets:
 -PineTree1
 -PineTree2
 
-Tomas (Veynam)
+##Tomas (Veynam)
 Scripts:
 -MouseLook
 -Movement
