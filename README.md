@@ -1,37 +1,39 @@
 # GGJ21_GamesJam
 GGJ 2021 Games Jam submission
 
-##Liutauras (ucvex)
+**Liutauras (ucvex):**
+
 Scripts:
--Enemybehaviour
--ObjectFacingPlayer
--Patrol
--Subtitles
+- Enemybehaviour
+- ObjectFacingPlayer
+- Patrol
+- Subtitles
 
 Assets:
--Monster
--Grass
--Bush
--PineTree1
--PineTree2
+- Monster
+- Grass
+- Bush
+- PineTree1
+- PineTree2
 
-##Tomas (Veynam)
+**Tomas (Veynam):**
+
 Scripts:
--MouseLook
--Movement
--SimpleCameraController
+- MouseLook
+- Movement
+- SimpleCameraController
 
 Assets:
--Boulder
--Lamp
--Stone
--Moss
--Level build
+- Boulder
+- Lamp
+- Stone
+- Moss
+- Level build
 
 Sounds:
--Bark (1-3)
--Step (1-5)
--Wind (1-3)
--Whine (1-3)
+- Bark (1-3)
+- Step (1-5)
+- Wind (1-3)
+- Whine (1-3)
 
 Early Concept Documentation: https://docs.google.com/document/d/18fgVjMxRz3MEZv3oHFV_RoFkMfSfxNknLS4PIQTTpLw/edit
