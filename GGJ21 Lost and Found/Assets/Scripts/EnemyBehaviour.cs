@@ -68,12 +68,15 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Sight()
 	{
+        // Start sighting delay count (Used to have the enemy chase the player for a bit even if there is no sight)
         sightingDelay =- Time.deltaTime;
         if (sightingDelay == 0) playerInSight = false;
 
+        // Get player direction and angle
         Vector3 direction = player.transform.position - transform.position;
         float angle = Vector3.Angle(direction, transform.forward);
 
+        // If player angle is within enemy field of view
         if (angle<fieldOfView * 0.5f)
         {
             RaycastHit hit;
@@ -82,8 +85,11 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 if (hit.collider.gameObject == player)
                 {
+                    // Enemy notices the player and begins chasing
                     playerInSight = true;
                     sightingDelay = defaultSightingDelay;
+
+                    // Add the player position to be one of the patrol points
                     waypoints[waypointIndex].position = player.transform.position;
                 }
                 else playerInSight = false;
@@ -93,6 +99,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Chase()
 	{
+        // Upon seeing the player, start moving towards him
+
         if(playerInSight && distance > 2f)
 		{
             animator.SetBool("Walk", true);
@@ -104,15 +112,20 @@ public class EnemyBehaviour : MonoBehaviour
 	{
         if(!playerInSight)
 		{
+            // Calculate distance to waypoint
             wayPointDistance = Vector3.Distance(transform.position, waypoints[waypointIndex].position);
             if (wayPointDistance < 3f)
             {
+                // Go to next waypoint if close to the current one
                 waypointIndex++;
+
+                // After iterating over all waypoints, return to the first one
                 if (waypointIndex >= waypoints.Length)
                 {
                     waypointIndex = 0;
                 }
             }
+            // Start walking to waypoint
             animator.SetBool("Walk", true);
             nav.SetDestination(waypoints[waypointIndex].position);
         }
@@ -122,13 +135,20 @@ public class EnemyBehaviour : MonoBehaviour
 	{
         if (playerInSight && distance <= 2f && dead == false)
         {
+            // Start attack delay counting (Used to get the end of attack animation)
             attackDelay -= Time.deltaTime;
+
+            // Stop all enemy movement
             gameObject.GetComponent<NavMeshAgent>().velocity = Vector3.zero;
             nav.SetDestination(transform.position);
+
+            // Rotate towards player
             var lookPos = player.transform.position - transform.position;
             lookPos.y = 0;
             var rotation = Quaternion.LookRotation(lookPos);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
+
+            // Set Bite Animation
             animator.SetBool("Walk", false);
             animator.SetBool("Bite", true);
 
@@ -138,6 +158,7 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 if (hit.collider.gameObject == player && attackDelay <= 0)
                 {
+                    // Kill Player if it is the end of attack animation and player is in range
                     dead = true;
                     mouseLook.dead = true;
                     movement.dead = true;

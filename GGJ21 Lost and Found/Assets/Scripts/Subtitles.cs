@@ -12,6 +12,7 @@ public class Subtitles : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
+		// If player enter into gameobject's collider, start displaying subtitles
 		if (other.gameObject.name == "Player") StartCoroutine(ShowSubtitle());
 	}
 
@@ -25,6 +26,7 @@ public class Subtitles : MonoBehaviour
 
 	IEnumerator ShowSubtitle()
 	{
+		// Show subititle once and then disable gameobject
 		textBox.text = text;
 		yield return new WaitForSeconds(5);
 		textBox.text = null;

@@ -8,7 +8,7 @@ public class ObjectFacingPlayer : MonoBehaviour
 
     void Update()
     {
-        // Make the asset to always face the player - only rotate on y axis
+        // Make the asset always face the player - only rotate on y axis
         var lookPos = player.transform.position - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
