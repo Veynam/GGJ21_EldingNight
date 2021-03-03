@@ -1,5 +1,6 @@
 # GGJ21_GamesJam
 GGJ 2021 Games Jam submission
+https://globalgamejam.org/2021/games/elding-night-2
 
 **Liutauras (ucvex):**
 
